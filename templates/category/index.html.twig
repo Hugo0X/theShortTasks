@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title "Categories admin"  %}
+{% block body %}
+
+	<div class="col-md-12"><div class="container">
+
+	<div class="container">
+		<div class="row">
+			<div class="col"><a href="{{ path('app_category_create')}}" class="text-decoration-none btn btn-lg btn-warning">New category</a></div>
+			<div class="col-8"><h1 >The {{  categories | length }} categories</h1></div>
+		</div>
+    </div>    		 
+
+		<div class="table-responsive mt-4">
+			<table class="table table-striped table-hover">
+				<thead class="table-dark">
+					<tr class="bg-entete">
+						<th class="col-identifiants">Id</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Link</th>
+					</tr>
+				</thead>
+				<tbody class="cursor-default">
+					{% for category in categories %}
+						 <tr onclick="window.location.href = '{{ path('app_category_show', {'id': category.id}) }}';">
+							<td>{{ category.id }}</td>
+							<td>{{ category.title }}</td>
+							<td>{{ category.description }}</td>
+							<td>{{ category.imageName }}</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="8">No category found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>	
+	</div>		
+{% endblock %}
