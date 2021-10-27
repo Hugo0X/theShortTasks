@@ -75,14 +75,14 @@ class Pin
     private $User;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="Pin")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="Pin", orphanRemoval=true)
      */
     private $tasks;
 
-    // /**
-    //  * @ORM\OneToMany(targetEntity=Volunteer::class, mappedBy="volunteer", orphanRemoval=true)
-    //  */
-    // private $volunteer;
+    /**
+     * @ORM\OneToMany(targetEntity=Volunteer::class, mappedBy="pin", orphanRemoval=true)
+     */
+    private $volunteer;
 
     public function __construct()
     {
