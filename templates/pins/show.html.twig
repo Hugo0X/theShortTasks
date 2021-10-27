@@ -40,13 +40,13 @@
                                 {% if pin.tasks is not empty %} {# there are already some taks #}
                                 <ol>
                                     {% for task in pin.tasks %}
-                                        <li {% if task.isEnded %} class="strikethrough" {% endif %}>  <span class="font-weight-bold">{{ task.name}}</span> - {{ task.status }}<button onclick="document.getElementById('js-task-ended-form').submit();" class="ml-2 btn {% if task.isEnded %}btn-light{% else %}btn-secondary{% endif %}">Ended</button><button class="btn btn-light">Edit</button><button onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-task-delete-form').submit();" class="btn btn-light">Delete</button></li>
-                                        <form id="js-task-ended-form" action="{{ path('app_task_ended', {id: pin.id}) }}" method="post" style="display: none;">
+                                        <li {% if task.isEnded %} class="strikethrough" {% endif %}>  <span class="font-weight-bold">{{ task.name}}</span> - {{ task.status }}<button onclick="document.getElementById('js-task-ended-form-{{ task.id }}').submit();" class="ml-2 btn {% if task.isEnded %}btn-light{% else %}btn-secondary{% endif %}"><i class="bi bi-check-circle"></i></button><button class="btn btn-light"><i class="bi bi-pencil-square"></i></button><button onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-task-delete-form-{{ task.id }}').submit();" class="btn btn-light"><i class="bi bi-trash"></i></button></li>
+                                        <form id="js-task-ended-form-{{ task.id }}" action="{{ path('app_task_ended', {id: pin.id}) }}" method="post" style="display: none;">
                                             <input type="hidden" name="id" value="{{ pin.id }}">
                                             <input type="hidden" name="taskId" value="{{ task.id }}">
                                             <input type="hidden" name="csrf_token" value="{{ csrf_token('task_ended_' ~ pin.id) }}">
                                         </form>
-                                        <form id="js-task-delete-form" action="{{ path('app_task_delete', {id: pin.id}) }}" method="post" style="display: none;">
+                                        <form id="js-task-delete-form-{{ task.id }}" action="{{ path('app_task_delete', {id: pin.id}) }}" method="post" style="display: none;">
                                             <input type="hidden" name="id" value="{{ pin.id }}">
                                             <input type="hidden" name="taskId" value="{{ task.id }}">
                                             <input type="hidden" name="csrf_token" value="{{ csrf_token('task_deletion_' ~ pin.id) }}">

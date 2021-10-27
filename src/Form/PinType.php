@@ -30,7 +30,7 @@ class PinType extends AbstractType
                 // 'asset_helper' => true,
         ])
             ->add('title', TextType::class)
-            ->add('category', EntityType::class, ['label' => 'Catégorie', 'class' => Category::class, 'choice_label' => 'title', 'multiple' => false, 'expanded' => false])
+            ->add('category', EntityType::class, ['label' => 'Category', 'class' => Category::class, 'choice_label' => 'title', 'multiple' => false, 'expanded' => false])
             ->add('description', TextareaType::class)
         ;
     }
